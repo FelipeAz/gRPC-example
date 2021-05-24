@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package example;
+
+option go_package = "pb";
+
+// Numbers are 'tags' and not values
+message Sum {
+  float a = 1;
+  float b = 2;
+}
+
+// Request Pattern
+message NewSumRequest {
+  Sum sum = 1;
+}
+
+// Response Pattern
+message NewSumResponse {
+  float result = 1;
+}
+
+// Service example
+service MathService {
+  rpc Sum(NewSumRequest) returns (NewSumResponse);
+}
