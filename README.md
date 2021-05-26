@@ -27,6 +27,16 @@ To test the gRPC feature, we must first initialize the gRPC server. You can do t
 
 ``go run cmd/server/server.go``
 
+
+## Data Transfer
+
 When the gRPC server is up, open a new terminal and run the client:
 
 ``go run cmd/client/client.go``
+
+## Data Transfer as Stream
+
+The gRPC allow us to transfer data as stream (stream transfer happens at real time). I've implemented a simple fibonacci function that generates 20 numbers of fibonacci sequence to test this functionality of gRPC.
+To run that test, open a new terminal with the gRPC server up and use the following command
+
+``go run cmd/stream/stream.go``
