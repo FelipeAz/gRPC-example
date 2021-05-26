@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package example;
 
-option go_package = "pb";
+option go_package = "/pb";
 
 // Numbers are 'tags' and not values
 message Sum {
@@ -20,7 +20,17 @@ message NewSumResponse {
   float result = 1;
 }
 
+// Recursive function that will be calculated by the gRPC stream
+message FibonacciRequest {
+  int32 n = 1;
+}
+
+message FibonacciResponse {
+  int32 result = 1;
+}
+
 // Service example
 service MathService {
-  rpc Sum(NewSumRequest) returns (NewSumResponse);
+  rpc Sum(NewSumRequest) returns(NewSumResponse) {};
+  rpc Fibonacci(FibonacciRequest) returns(stream FibonacciResponse) {};
 }

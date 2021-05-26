@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"io"
 	"log"
 
 	"github.com/FelipeAz/gRPC-example/pb/pb"
@@ -17,18 +18,16 @@ func main() {
 	defer connection.Close()
 
 	client := pb.NewMathServiceClient(connection)
-	request := &pb.NewSumRequest{
-		Sum: &pb.Sum{
-			A: 11,
-			B: 15,
-		},
+	request := &pb.FibonacciRequest{
+		N: 20,
 	}
 
-	res, err := client.Sum(context.Background(), request)
-	if err != nil {
-		log.Fatalf("Could not send request: %v", err)
-		return
+	responseStream, err := client.Fibonacci(context.Background(), request)
+	for {
+		stream, err := responseStream.Recv()
+		if err == io.EOF {
+			break
+		}
+		log.Printf("Fibonacci: %v", stream.GetResult())
 	}
-
-	log.Println("Testing Data Transfer with gRPC.", res.Result)
 }
