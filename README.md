@@ -1,6 +1,6 @@
 ## What is gRPC?
 
-gRPC means google Remote Procedure Call. It's a transfeer protocol (Protobuf - Protocol buffer) created by google. This protocol is based in a "contract" that must be followed by all the services that will use this feature.
+gRPC is a Remote Procedure Call. It's a transfeer protocol (Protobuf - Protocol buffer) created by google. This protocol is based in a "contract" that must be followed by all the services that will use this feature.
 
 The gRPC compiles the "contract" and generates the functions we need to make it work.
 
